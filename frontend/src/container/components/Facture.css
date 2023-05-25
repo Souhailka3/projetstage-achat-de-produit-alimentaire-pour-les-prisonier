@@ -1,0 +1,84 @@
+body {
+  background-color: #d1d6da;
+}
+
+.container {
+  margin-top: 3%;
+  min-width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.facture {
+  width: 30%;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid gray;
+  background-color: white;
+  box-shadow: 0px 0px 5px 0px rgba(87, 87, 87, 0.8);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  @media print {
+    @page {
+      size: landscape;
+    }
+  }
+}
+
+.selectedProducts div {
+  border-bottom: 1px dotted grey;
+}
+
+.facture * {
+  margin: 4px;
+}
+
+.date {
+  display: flex;
+}
+
+.instruction {
+  margin: 10px;
+  border: 1px solid gray;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px 0px rgba(87, 87, 87, 0.8);
+  padding: 10px;
+}
+
+.print {
+  border: 1px solid gray;
+  background-color: white;
+  color: black;
+  border-bottom: 0;
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px 0px rgba(87, 87, 87, 0.8);
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  max-height: 80px;
+  margin: 10px;
+}
+
+.print:hover {
+  cursor: pointer;
+}
+
+.coin {
+  max-width: 80px;
+  max-height: 50px;
+  border-radius: 10px;
+}
+
+.cont {
+  display: flex;
+  @media print {
+    display: none;
+  }
+}

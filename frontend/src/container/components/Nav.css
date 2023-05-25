@@ -1,0 +1,37 @@
+.nav {
+  background: rgb(58, 142, 180);
+  background: linear-gradient(
+    90deg,
+    rgba(58, 142, 180, 1) 0%,
+    rgba(29, 63, 253, 1) 25%,
+    rgba(33, 109, 237, 1) 74%,
+    rgba(58, 142, 180, 1) 100%
+  );
+  color: rgba(10, 210, 151, 1);
+  height: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+}
+
+.nav > div {
+  flex: 1;
+  @media print {
+    display: none;
+  }
+}
+
+.logo {
+  width: 30px !important;
+  height: 30px !important;
+  margin-bottom: 10px;
+  margin-left: 20px;
+  object-fit: scale-down;
+}
+
+.logo-tiltle {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
