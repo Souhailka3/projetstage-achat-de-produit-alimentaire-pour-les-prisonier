@@ -3,11 +3,18 @@ package com.dgapr.utilisateur;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
+
+import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
@@ -22,6 +29,32 @@ public class UtilisateurController {
   public @ResponseBody Iterable<Utilisateur> getAllUtilisateur() {
     // This returns a JSON or XML with the users
     return utilisateurRepository.findAll();
+  }
+
+  @PostMapping(path = "/login")
+  public @ResponseBody Map<String, Object> login(@RequestBody Map<String, Object> payload,
+      HttpServletRequest request) {
+    String email = (String) payload.get("email");
+    String password = (String) payload.get("password");
+
+    // Query the database for a user with the provided email
+    Optional<Utilisateur> user = utilisateurRepository.findByEmail(email);
+
+    // Check if the user exists and if the provided password is correct
+    if (user.isPresent() && user.get().getMdp().equals(password)) {
+      // Login successful
+      // Store the user ID in a session attribute
+      request.getSession().setAttribute("userId", user.get().getId());
+
+      Map<String, Object> response = new HashMap<>();
+      response.put("valid", true);
+      return response;
+    } else {
+      // Login failed
+      Map<String, Object> response = new HashMap<>();
+      response.put("valid", false);
+      return response;
+    }
   }
 
 }
